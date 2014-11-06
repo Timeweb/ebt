@@ -4,6 +4,7 @@
 -export([to_b/1]).
 -export([to_l/1]).
 -export([to_i/1]).
+-export([to_f/1]).
 -export([can_i/1]).
 
 
@@ -44,6 +45,16 @@ to_i(V) when is_atom(V) ->
     list_to_integer(atom_to_list(V));
 to_i(V) when is_integer(V) ->
     V.
+
+to_f(V) when is_integer(V) ->
+  float(V);
+to_f(V) when is_binary(V) ->
+  binary_to_list(V);
+to_f(V) when is_list(V) ->
+  case string:to_float(V) of
+    {error,no_float} -> list_to_integer(V);
+    {F,_Rest} -> F
+  end.
 
 
 can_i(V) when is_list(V) ->
