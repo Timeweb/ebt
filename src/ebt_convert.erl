@@ -49,7 +49,7 @@ to_i(V) when is_integer(V) ->
 to_f(V) when is_integer(V) ->
   float(V);
 to_f(V) when is_binary(V) ->
-  binary_to_list(V);
+  to_f(binary_to_list(V));
 to_f(V) when is_list(V) ->
   case string:to_float(V) of
     {error,no_float} -> list_to_integer(V);
