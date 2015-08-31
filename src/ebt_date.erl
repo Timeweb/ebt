@@ -1,17 +1,13 @@
 -module(ebt_date).
 
--export([date_str/0]).
+-export([date_str/1]).
 -export([date_str_ru/0]).
 -export([date_str_de/0]).
 
-date_str() ->
-  {ok, #{ notifications := Locale }} = application:get_env(portal, locale),
-  case Locale of
-    "ru" ->
-      date_str_ru();
-    "de" ->
-      date_str_de()
-  end.
+date_str("ru") ->
+  date_str_ru();
+date_str("de") ->
+  date_str_de().
 
 date_str_ru() ->
     Months = #{
