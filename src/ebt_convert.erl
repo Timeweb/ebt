@@ -22,6 +22,8 @@ to_b(V) when is_list(V) ->
     list_to_binary(V);
 to_b(V) when is_integer(V) ->
     to_b(integer_to_list(V));
+to_b(V) when is_float(V) ->
+    to_b(float_to_list(V));
 to_b(V) when is_atom(V) ->
     to_b(atom_to_list(V));
 to_b(V) when is_binary(V) ->
